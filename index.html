@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Smart Counter</title>
+</head>
+
+<body>
+    <section id="counter-container">
+        <div class="container">
+            <div id="menu">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="pt-5 text-center">Smart Counter</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <div class="list-group pt-5">
+                            <a class="list-group-item list-group-item-action" onclick="addCounter();">Add Counter</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4"></div>
+                </div>
+            </div>
+
+            <div id="counters" class="mt-3">
+                <div class="row">
+                    <div class="col-lg-4 counter">
+                        <div class="p-3 rounded">
+                            <input type="number" value="0">
+                            <button type="button" class="btn btn-primary mt-1" onclick="alter($(this), 'plus');">+</button>
+                            <button type="button" class="btn btn-warning mt-1" onclick="alter($(this), 'minus');">-</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- Scripts -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<style>
+    #counter-container {
+        background-color: #ffffff;
+    }
+
+    .counter {
+        background-color: #000;
+    }
+        .counter input {
+            width: 100%;
+        }
+        .counter button {
+            width: 100%;
+        }
+</style>
+
+<script>
+    function alter(thisOnClick, operation) {
+        var input = $(thisOnClick).closest("div").find("input"),
+            value = (input.val() != "") ? parseInt(input.val()) : 0;
+
+        (operation == "plus") ? value++ : value--;
+
+        $(input).val(value);
+    }
+
+    function addCounter() {
+        var counters = $(".counter");
+
+        $(counters[0]).clone().appendTo("#counters .row");
+    }
+
+</script>
+
+</html>
